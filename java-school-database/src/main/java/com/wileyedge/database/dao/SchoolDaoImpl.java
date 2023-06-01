@@ -74,7 +74,7 @@ public class SchoolDaoImpl implements SchoolDao {
         // Name the aggregate field `numStudents`.
         // YOUR CODE STARTS HERE
 
-        String sql = "";
+        String sql = "SELECT courseCode, courseDesc, (SELECT COUNT(course_id) from course_student cs where cs.course_id = c.cid) as numStudents FROM course c";
 
         // YOUR CODE ENDS HERE
         return jdbcTemplate.query(sql, new StudentCountMapper());
@@ -87,7 +87,7 @@ public class SchoolDaoImpl implements SchoolDao {
         // Part 1: Write a query to add the student Robert Dylan to the student table.
         // YOUR CODE STARTS HERE
 
-        String sql = "";
+        String sql = "INSERT INTO student VALUES (10, 'Robert','Dylan')";
 
         // YOUR CODE ENDS HERE
          System.out.println(jdbcTemplate.update(sql));
@@ -99,7 +99,7 @@ public class SchoolDaoImpl implements SchoolDao {
         // Part 2: Write a query to add Robert Dylan to CS148.
         // YOUR CODE STARTS HERE
 
-        String sql = "";
+        String sql = "INSERT INTO course_student VALUES (10,1)";
 
         // YOUR CODE ENDS HERE
         jdbcTemplate.update(sql);
@@ -110,7 +110,7 @@ public class SchoolDaoImpl implements SchoolDao {
         // Write a query to change the course description for course CS305 to "Advanced Python with Flask".
         // YOUR CODE STARTS HERE
 
-        String sql = "";
+        String sql = "UPDATE course SET courseDesc = 'Advanced Python with Flask' WHERE courseCode = 'CS305'";
 
         // YOUR CODE ENDS HERE
         jdbcTemplate.update(sql);
@@ -121,7 +121,7 @@ public class SchoolDaoImpl implements SchoolDao {
         // Write a query to remove David Mitchell as a teacher.
         // YOUR CODE STARTS HERE
 
-        String sql = "";
+        String sql = "DELETE FROM teacher WHERE tFName = 'David' AND tLName = 'Mitchell'";
 
         // YOUR CODE ENDS HERE
         jdbcTemplate.update(sql);
