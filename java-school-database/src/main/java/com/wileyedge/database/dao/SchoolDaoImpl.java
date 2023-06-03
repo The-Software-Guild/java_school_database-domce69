@@ -61,7 +61,7 @@ public class SchoolDaoImpl implements SchoolDao {
         //  Name the aggregate field `teacherCount`.
         // YOUR CODE STARTS HERE
 
-        String sql = "SELECT dept, COUNT(DISTINCT dept) teacherCount from teacher;";
+        String sql = "SELECT DISTINCT dept, COUNT(dept) teacherCount from teacher GROUP BY dept";
 
         // YOUR CODE ENDS HERE
         return jdbcTemplate.query(sql, new TeacherCountMapper());
